@@ -1,17 +1,53 @@
+{% capture version %}{% polymer_version_dir %}{% endcapture %}
+{% if version != '' %}
+  {% assign version_prefix = version | prepend:'/' %}
+{% else %}
+  {% assign version_prefix = '' %}
+{% endif %}
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1">
+<meta name="google-site-verification" content="k0e8DrbD40s54xHNBqwIsRrSSAkZoprwtEYDnNY06bU" />
+<meta name="google-site-verification" content="pnjjbQFvjPwaWhEXY6nSyaS9iyghmH-M_yLHBveDX2M">
+<meta itemprop="name" content="{{site.project_title}}{% if page.title %} - {{page.title}}{% endif %}">
+<meta itemprop="description" content="{% if page.description %}{{page.description}}{% else %}Polymer is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable element that works across desktop and mobile.{% endif %}">
 
-  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+{% if page.snippet_img %}
+<meta itemprop="image" content="{{page.snippet_img}}">
+{% else %}
+<meta itemprop="image" content="https://www.polymer-project.org/images/instacod.png">
+{% endif %}
 
-<!--    Web Components-->
-  <script src="{{ "/bower_components/webcomponentsjs/webcomponents.js" | prepend: site.baseurl }}"></script>
-    
-  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-<link rel="stylesheet" href="{{ "/css/common.css" | prepend: site.baseurl }}">
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
-    
+<title>
+  {% if page.title %}
+    {{page.title}} -
+  {% else %}
+    Welcome - A new type of library for the web, built on top of Web Components
+    {% endif %} {{site.project_title}} {{version}}
+</title>
+<link rel="publisher" href="https://plus.google.com/107187849809354688692">
+<link rel="shortcut icon" href="/images/logos/p-logo-32.png">
+<link href="//fonts.googleapis.com/css?family=RobotoDraft:300,400,500|Source+Code+Pro:400,500,700" rel="stylesheet">
 
+{% if page.layout == 'home' or page.layout == 'home_1_0' %}
+  {% comment %}homepage.css includes site2.css {% endcomment %}
+  <link href="/css/homepage.css?{{site.time | date: '%Y%m%d'}}" rel="stylesheet">
+{% else %}
+  <link href="/css/site2.css?{{site.time | date: '%Y%m%d'}}" rel="stylesheet">
+{% endif %}
+<link href="/css/site2_sd_rules.css?{{site.time | date: '%Y%m%d'}}" rel="stylesheet" shim-shadowdom>
+
+{% for item in page.stylesheets %}
+  <link rel="stylesheet" href="{{item}}?{{site.time | date: '%Y%m%d'}}" shim-shadowdom>
+{% endfor %}
+
+<script src="{{version_prefix}}/components/webcomponentsjs/webcomponents.min.js?{{site.time | date: '%Y%m%d'}}"></script>
+<!-- TODO: remove when https://github.com/Polymer/polymer/issues/391 is fixed -->
+<link rel="import" href="{{version_prefix}}/components/polymer/polymer.html">
+
+{% if page.layout == 'home' or page.layout == 'home_1_0' %}
+  <link rel="import" href="{{version_prefix}}/elements/homepage_elements.vulcanized.html?{{site.time | date: '%Y%m%d'}}">
+{% else %}
+  <link rel="import" href="{{version_prefix}}/elements/common_elements.vulcanized.html?{{site.time | date: '%Y%m%d'}}">
+{% endif %}
