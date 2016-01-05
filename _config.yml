@@ -13,8 +13,8 @@ description: > # this means to ignore newlines until "baseurl:"
   by the National Weather Service and Raytheon. AWIPS II is a Java application 
   consisting of a data-rendering client (CAVE) and a backend data server (EDEX), 
   and incorporates open source technologies such as HDF5, Qpid, Postgres and PyPIES.
-baseurl: "awips2" # the subpath of your site, e.g. /blog
-url: "unidata.github.io" # the base hostname & protocol for your site
+baseurl: "/awips2" # the subpath of your site, e.g. /blog
+url: "http://www.unidata.ucar.edu/software/awips2/" # the base hostname & protocol for your site
 github_username:  Unidata
 
 # Build settings
