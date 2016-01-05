@@ -14,7 +14,7 @@ description: > # this means to ignore newlines until "baseurl:"
   consisting of a data-rendering client (CAVE) and a backend data server (EDEX), 
   and incorporates open source technologies such as HDF5, Qpid, Postgres and PyPIES.
 baseurl: "/awips2" # the subpath of your site, e.g. /blog
-url: "http://www.unidata.ucar.edu/software/awips2/" # the base hostname & protocol for your site
+url: "http://unidata.github.io" # the base hostname & protocol for your site
 github_username:  Unidata
 
 # Build settings
